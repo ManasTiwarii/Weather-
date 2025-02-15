@@ -2,10 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const cityInput = document.getElementById("cityInput");
   const info = document.getElementById("Weather-info");
   const EnterCitybtn = document.getElementById("EnterCity-button");
-  const cityNameDisplay = document.getElementById("cityName");
-  const temperatureDisplay = document.getElementById("Temperature");
-  const descriptionDisplay = document.getElementById("description");
-  const errorMessageDisplay = document.getElementById("error-Message");
+  let cityNameDisplay = document.getElementById("cityName");
+  let temperatureDisplay = document.getElementById("temperature");
+  let descriptionDisplay = document.getElementById("description");
+  let errorMessageDisplay = document.getElementById("error-Message");
   const API_KEY = "54e2c55130ece2e3c8567506192fee74";
 
   EnterCitybtn.addEventListener("click", async () => {
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   async function fetchWeatherData(city) {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
+    const url = https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY};
     const response = await fetch(url); // Ensure 'await' is used
 
     if (!response.ok) {
@@ -36,10 +36,16 @@ document.addEventListener("DOMContentLoaded", () => {
   function displayWeatherData(data) {
     console.log(data);
     const { name, main, weather } = data;
+    console.log("City Name: ", name);
+    console.log("Temperature: ", main.temp);
+    console.log("Weather: ", weather[0].description);
     cityNameDisplay.textContent = name;
-    temperatureDisplay.textContent = `Temperature: ${main.temp}°C`;
-    descriptionDisplay.textContent = `Weather: ${weather[0].description}`;
-
+    console.log(cityNameDisplay.textContent);
+    temperatureDisplay.textContent = Temperature: ${main.temp}°C;
+    console.log(temperatureDisplay);
+    descriptionDisplay.textContent = Weather: ${weather[0].description};
+    console.log(descriptionDisplay);
+    
     info.classList.remove("hidden");
     errorMessageDisplay.classList.add("hidden"); // Hide error message on success
   }
